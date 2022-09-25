@@ -23,7 +23,7 @@ public class SpringServerApplication {
 }
 
 @RestController
-@RequestMapping("/mainPage")
+@RequestMapping("/")
 	class  DefaultRoutes{
 
 		@GetMapping("/")
