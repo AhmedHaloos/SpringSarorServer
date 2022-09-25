@@ -1,7 +1,9 @@
 package com.saror.sarorserver;
 
 
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.CriteriaDefinition;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -61,9 +64,12 @@ public class UserController {
 		return SpringServerApplication.mongoTemplateServer.findAndRemove(query, User.class);
 		}
 		@GetMapping("/login")
-	public User login(){
+	public List<User> login(@RequestParam String email, @RequestParam String password){
 
-		return null ;
+		Criteria criteria = Criteria.where("email").is(email).and("password").is(password);
+		Query query = new Query(criteria);
+		return SpringServerApplication.mongoTemplateServer.find( query, User.class);
+
 		}
 
 }

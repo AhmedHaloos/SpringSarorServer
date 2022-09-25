@@ -5,6 +5,10 @@ import com.mongodb.client.MongoClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 public class SpringServerApplication {
@@ -17,4 +21,19 @@ public class SpringServerApplication {
 		System.out.println("*********************************************");
 		System.out.println(state);
 }
+
+@RestController
+@RequestMapping("/")
+	class  DefaultRoutes{
+
+		@GetMapping("/")
+	public String getMainPage(){
+
+			return "mainPage";
+		}
+
+
+}
+
+
 }
