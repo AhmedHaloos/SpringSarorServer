@@ -1,0 +1,20 @@
+package com.saror.sarorserver;
+
+import com.mongodb.client.MongoClients;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+@SpringBootApplication
+public class SpringServerApplication {
+	static final String  uri = "mongodb+srv://ahmed_db:20101993mongodb@e-commetc-cluster.7gfpk46.mongodb.net/?retryWrites=true&w=majority";
+	public static MongoTemplate mongoTemplateServer = null;
+	public static void main(String[] args) {
+		SpringApplication.run(SpringServerApplication.class, args);
+		mongoTemplateServer  = new  MongoTemplate(MongoClients.create(uri), "sarordb");
+		String state = mongoTemplateServer != null ? "connected" : "not connected";
+		System.out.println("*********************************************");
+		System.out.println(state);
+}
+}
