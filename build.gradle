@@ -17,6 +17,7 @@ dependencies {
 	implementation group: 'org.springframework.data', name: 'spring-data-mongodb'
 	implementation 'org.mongodb:mongodb-driver-core'
 	implementation 'org.mongodb:mongodb-driver-sync'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
