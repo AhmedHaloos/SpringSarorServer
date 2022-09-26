@@ -23,10 +23,10 @@ public class SpringServerApplication {
 }
 
 @RestController
-@RequestMapping("/mainPage")
 	class  DefaultRoutes{
 
-		@GetMapping("/")
+@RequestMapping(value = "/mainPage")
+
 	public String mainPage(){
 
 			return "mainPage";
