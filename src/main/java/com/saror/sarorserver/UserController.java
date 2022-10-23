@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-	@GetMapping("/test")
-	public String testApi(){
-		return "test succeeded";
-	}
     @GetMapping
 		public List<User> getUsers(){
 			Query query = new Query();
@@ -64,12 +62,16 @@ public class UserController {
 		return SpringServerApplication.mongoTemplateServer.findAndRemove(query, User.class);
 		}
 		@GetMapping("/login")
-	public List<User> login(@RequestParam String email, @RequestParam String password){
+	public String  login(@RequestParam String phone, @RequestParam String password){
 
-		Criteria criteria = Criteria.where("email").is(email).and("password").is(password);
+		Criteria criteria = Criteria.where("phone").is(phone).and("password").is(password);
 		Query query = new Query(criteria);
-		return SpringServerApplication.mongoTemplateServer.find( query, User.class);
-
+		List<User> users =  SpringServerApplication.mongoTemplateServer.find( query, User.class);
+		return users.size() > 0 ? users.get(0).getName(): "no email found";
 		}
 
+		@RequestMapping("/test")
+	public String testMsg(){return "test";}
+	@RequestMapping("/tst")
+	public String tstMsg(){return "tst";}
 }
