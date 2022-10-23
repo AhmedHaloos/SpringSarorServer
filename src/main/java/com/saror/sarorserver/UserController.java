@@ -62,12 +62,12 @@ public class UserController {
 		return SpringServerApplication.mongoTemplateServer.findAndRemove(query, User.class);
 		}
 		@GetMapping("/login")
-	public String  login(@RequestParam String phone, @RequestParam String password){
+	public User login(@RequestParam String phone, @RequestParam String password){
 
 		Criteria criteria = Criteria.where("phone").is(phone).and("password").is(password);
 		Query query = new Query(criteria);
 		List<User> users =  SpringServerApplication.mongoTemplateServer.find( query, User.class);
-		return users.size() > 0 ? users.get(0).getName(): "no email found";
+		return users.size() > 0 ? users.get(0): null;
 		}
 
 		@RequestMapping("/test")
