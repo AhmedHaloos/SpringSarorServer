@@ -7,7 +7,7 @@ this is the documentation for saror server used as backend for the callSaror app
     - **"/"** : to add new user with **_post_** method
     - **"/{id}"** : to update user data with **_put_** method
 - **"/country/"**
-  - **"/{countryName}"** : to get a country using its name using _get_ method
+  - **"/{countryName}"** : to get a country using its name using **_get_** method
   - **"/"** or **/all** : to get all countries with **_get_** method
   - **"/"** or **"/all/"** : to add a country or list cf countries using _post_ method
   - **"/{countryName}"** : to modify country with **_put_** method
