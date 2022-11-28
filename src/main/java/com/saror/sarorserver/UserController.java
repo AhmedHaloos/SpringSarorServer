@@ -33,9 +33,7 @@ public class UserController {
 			return users;
 		}
 		@PostMapping
-		public User addUser(
-                @RequestBody User user
-        ){
+		public User addUser( @RequestBody User user){
 //			User user = new User(phone, email, password, name, location, nationalId, country, state);
 			User res = SpringServerApplication.mongoTemplateServer.insert(user);
 			return res;

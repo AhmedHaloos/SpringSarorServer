@@ -1,7 +1,6 @@
 package com.saror.sarorserver;
 
 import com.mongodb.client.MongoClients;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -49,9 +48,6 @@ class SecurityHandler implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-		System.err.println(request.getHeader("access-token"));
-		System.err.println(request.getReader());
 
 		return true;
 	}
