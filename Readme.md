@@ -12,4 +12,4 @@ this is the documentation for saror server used as backend for the callSaror app
   - **"/"** or **"/all/"** : to add a country or list cf countries using _post_ method
   - **"/{countryName}"** : to modify country with **_put_** method
   - **"/"** : to delete country  with **_delete_** method
-  - **/all/** :  to delete all countries with **_delete_** method
+  - **/all/** : to delete all countries with **_delete_** method
