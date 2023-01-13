@@ -1,13 +1,16 @@
 package com.saror.sarorserver;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.Date;
 
 public class User {
 
     private long id;
+    @Indexed(unique = true)
     private String phone;
+    @Indexed(unique = true)
     private String email;
     private String password;
     private String name;
