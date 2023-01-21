@@ -2,6 +2,7 @@ package com.saror.sarorserver;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
