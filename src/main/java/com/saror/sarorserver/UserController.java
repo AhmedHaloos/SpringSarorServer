@@ -1,9 +1,7 @@
 package com.saror.sarorserver;
 
-
 import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.CriteriaDefinition;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -68,9 +61,13 @@ public class UserController {
     @GetMapping("/contact")
     public User getContactData(@RequestParam String phone){
 
+        String customQuery = "{'phone' : {$regex : /"+phone+"/}}";
         Criteria criteria = Criteria.where("phone").is(phone);
+        BasicQuery basicQuery = new BasicQuery(customQuery);
 		Query query = new Query(criteria);
-		List<User> users = SpringServerApplication.mongoTemplateServer.find(query, User.class);
+        System.out.println("first character = "+( phone.charAt(0) == '+'));
+		List<User> users = SpringServerApplication.mongoTemplateServer.
+                find(phone.charAt(0) == '+'?query :  basicQuery, User.class);
         System.out.println("result users : "+users.size());
 		return users.size() > 0 ? users.get(0) : null;
 	}
