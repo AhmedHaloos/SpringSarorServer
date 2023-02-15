@@ -60,12 +60,13 @@ public class UserController {
 
     @GetMapping("/contact")
     public User getContactData(@RequestParam String phone){
-
-        String customQuery = "{'phone' : {$regex : /"+phone+"/}}";
-        Criteria criteria = Criteria.where("phone").is(phone);
+        String normalizedPhone = phone.replaceAll("[-\\(\\)\\s]", "");
+        System.out.println("normalizedPhone : "+normalizedPhone);
+        String customQuery = "{'phone' : {$regex : /"+normalizedPhone+"/}}";
+        Criteria criteria = Criteria.where("phone").is(normalizedPhone);
         BasicQuery basicQuery = new BasicQuery(customQuery);
 		Query query = new Query(criteria);
-        System.out.println("first character = "+( phone.charAt(0) == '+'));
+        System.out.println("first character = "+( normalizedPhone.charAt(0) == '+'));
 		List<User> users = SpringServerApplication.mongoTemplateServer.
                 find(phone.charAt(0) == '+'?query :  basicQuery, User.class);
         System.out.println("result users : "+users.size());
