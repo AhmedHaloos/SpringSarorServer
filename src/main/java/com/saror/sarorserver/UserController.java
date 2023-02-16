@@ -61,6 +61,7 @@ public class UserController {
     @GetMapping("/contact")
     public User getContactData(@RequestParam String phone){
         String normalizedPhone = phone.replaceAll("[-\\(\\)\\s]", "");
+        normalizedPhone =  normalizedPhone.startsWith("0")? normalizedPhone.substring(1) : normalizedPhone;
         System.out.println("normalizedPhone : "+normalizedPhone);
         String customQuery = "{'phone' : {$regex : /"+normalizedPhone+"/}}";
         Criteria criteria = Criteria.where("phone").is(normalizedPhone);
